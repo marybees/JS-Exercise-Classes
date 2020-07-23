@@ -190,7 +190,7 @@ class Instructor extends Lambdasian {
   }
 }
 
-const instructorOne = new Child({
+const instructorOne = new Instructor({
   name: "Joe",
   age: 35,
   location: "Barcelona, Spain",
@@ -218,9 +218,40 @@ instructorOne.grade(maryBaker, "Computer Science");
         + `PRAssignment` a method that receives a subject as an argument and returns `student.name has submitted a PR for {subject}`
         + `sprintChallenge` similar to PRAssignment but returns `student.name has begun sprint challenge on {subject}`
 */
-class Student {
 
+class Student extends Lambdasian {
+  constructor(attributes) {
+    super(attributes);
+    this.previousBackground = attributes.previousBackground;
+    this.className = attributes.className;
+    this.favSubjects = attributes.favSubjects;
+  }
+  listSubjects() {
+    `Loving ${this.favSubjects}`
+  }
+  PRAssignment(subject) {
+    `${this.name} has submitted a PR for ${subject}`
+  }
+  sprintChallenge(subject) {
+    `${this.name} has begun sprint challenge on ${subject}`
+  }
 }
+
+const studentOne = new Student({
+  name: "Sam",
+  age: 22,
+  location: "Boston, MA",
+  previousBackground: "Marketing Manager",
+  className: "web34",
+  favSubjects: ["math", "science", "physical education"]
+});
+
+console.log(studentOne.age);
+studentOne.listSubjects();
+studentOne.PRAssignment("Data Science 101");
+studentOne.sprintChallenge("Intro to Python");
+
+/*
 
 /*
   TASK 6
