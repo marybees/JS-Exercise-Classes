@@ -66,7 +66,11 @@ const mary = new Person({
   age: 33,
 });
 
-console.log(mary.age());
+console.log(mary.toString());
+mary.eat("salad");
+console.log(mary.stomach);
+mary.poop();
+console.log(mary.stomach);
 
 
 /*
@@ -84,7 +88,27 @@ console.log(mary.age());
 */
 
 class Car {
+  constructor(attributes) {
+    this.model = attributes.model;
+    this.milesPerGallon = attributes.milesPerGallon;
+    this.tank = 0;
+    this.odometer = 0;
+  }
+    fill(gallons) {
+      return (this.tank += gallons);
+    }
 
+    drive(distance) {
+      if (this.tank > 0 && distance > 0) {
+      this.odometer += distance;
+      distance = this.milesPerGallon * this.tank;
+      this.tank = distance / this.milesPerGallon
+      let fuel = Math.abs(this.tank);
+      } if (this.tank === 0) {
+        this.tank = 0;
+        return (`I ran out of fuel at ${this.odometer} miles!`);
+      }
+    }
 }
 
 /*
