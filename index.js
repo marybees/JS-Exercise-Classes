@@ -177,13 +177,13 @@ class Student extends Lambdasian {
     this.favSubjects = attributes.favSubjects;
   }
   listSubjects() {
-    `Loving ${this.favSubjects}`
+    return `Loving ${this.favSubjects}`
   }
   PRAssignment(subject) {
-    `${this.name} has submitted a PR for ${subject}`
+    return `${this.name} has submitted a PR for ${subject}`
   }
   sprintChallenge(subject) {
-    `${this.name} has begun sprint challenge on ${subject}`
+    return `${this.name} has begun sprint challenge on ${subject}`
   }
 }
 
@@ -211,17 +211,9 @@ class ProjectManager extends Instructor {
   return `${this.name} announces to ${slackChannel}, @channel standy times!`;
  }
  debugsCode(student, subject) {
-  return `${this.name} debugs ${student}'s code on ${subject}`;
+  return `${this.name} debugs ${student.name}'s code on ${subject}`
  }
 }
-
-const projectManagerOne = new ProjectManager({
-  name: "April",
-  age: 27,
-  location: "Los Angeles, CA",
-  gradClassName: "CS1",
-  favInstructor: "Sean",
-});
 
 /*
   STRETCH PROBLEM (no tests!)
