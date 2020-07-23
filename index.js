@@ -111,6 +111,23 @@ class Car {
     }
 }
 
+// odometer increases by distance travelled
+// distance travelled is determined by miles per gallon * gallons
+
+const batmobile = new Car({
+  model: "batMobile",
+  milesPerGallon: 20,
+});
+
+batmobile.fill(10);
+batmobile.fill(10);
+
+console.log(batmobile.tank);
+
+batmobile.drive(200);
+
+console.log(batmobile.odometer);
+
 /*
   TASK 3
     - Write a Lambdasian class.
