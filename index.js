@@ -95,7 +95,7 @@ class Car {
     this.odometer = 0;
   }
     fill(gallons) {
-      return (this.tank += gallons);
+      return this.tank += gallons;
     }
 
     drive(distance) {
@@ -106,7 +106,7 @@ class Car {
       let fuel = Math.abs(this.tank);
       } if (this.tank === 0) {
         this.tank = 0;
-        return (`I ran out of fuel at ${this.odometer} miles!`);
+        return `I ran out of fuel at ${this.odometer} miles!`;
       }
     }
 }
@@ -141,8 +141,24 @@ console.log(batmobile.odometer);
         + {name} and {location} of course come from the instance's own properties.
 */
 class Lambdasian {
-
+  constructor(attributes) {
+    this.name = attributes.name;
+    this.age = attributes.age;
+    this.location = attributes.location;
+  }
+  speak() {
+    return `Hello my name is ${this.name}, I am from ${this.location}`;
+  }
 }
+
+const maryBaker = new Lambdasian({
+  name: "Mary Baker",
+  age: 33;
+  location: "Upstate New York"
+});
+
+maryBaker.speak();
+console.log(maryBaker.location);
 
 /*
   TASK 4
