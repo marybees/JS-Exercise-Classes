@@ -46,32 +46,20 @@ class Person {
     this.age = attributes.age;
     this.stomach = [];
   }
+  poop() {
+    this.stomach = [];
+  } 
     eat(edible) {
       if(this.stomach.length < 10) {
         this.stomach.push(edible);
       } else {
-        this.stomach.poop;
+        this.poop;
       }
-    poop() {
-      this.stomach = [];
-    } 
+    }
     toString() {
      return `${this.name}, + ${this.age}`
     }  
   }
-}
-
-const mary = new Person({
-  name: "Mary",
-  age: 33,
-});
-
-console.log(mary.toString());
-mary.eat("salad");
-console.log(mary.stomach);
-mary.poop();
-console.log(mary.stomach);
-
 
 /*
   TASK 2
@@ -99,34 +87,16 @@ class Car {
     }
 
     drive(distance) {
-      if (this.tank > 0 && distance > 0) {
       this.odometer += distance;
-      distance = this.milesPerGallon * this.tank;
-      this.tank = distance / this.milesPerGallon
-      let fuel = Math.abs(this.tank);
-      } if (this.tank === 0) {
+      const gallonsNeeded = distance / this.milesPerGallon;
+      this.tank -= gallonsNeeded;
+      if (this.tank <= 0) {
+        this.odometer -= this.milesPerGallon * Math.abs(this.tank);
         this.tank = 0;
-        return `I ran out of fuel at ${this.odometer} miles!`;
+        return `I ran out of gas at ${this.odometer} miles.`;
       }
     }
 }
-
-// odometer increases by distance travelled
-// distance travelled is determined by miles per gallon * gallons
-
-const batmobile = new Car({
-  model: "batMobile",
-  milesPerGallon: 20,
-});
-
-batmobile.fill(10);
-batmobile.fill(10);
-
-console.log(batmobile.tank);
-
-batmobile.drive(200);
-
-console.log(batmobile.odometer);
 
 /*
   TASK 3
@@ -151,14 +121,14 @@ class Lambdasian {
   }
 }
 
-const maryBaker = new Lambdasian({
-  name: "Mary Baker",
-  age: 33;
-  location: "Upstate New York"
-});
+// const maryBaker = new Lambdasian({
+//   name: "Mary Baker",
+//   age: 33,
+//   location: "Upstate New York"
+// });
 
-maryBaker.speak();
-console.log(maryBaker.location);
+// maryBaker.speak();
+// console.log(maryBaker.location);
 
 /*
   TASK 4
@@ -189,19 +159,6 @@ class Instructor extends Lambdasian {
     `${student.name} receives a perfect score on ${subject}`
   }
 }
-
-const instructorOne = new Instructor({
-  name: "Joe",
-  age: 35,
-  location: "Barcelona, Spain",
-  specialty: "CSS",
-  favLanguage: "JavaScript",
-  catchPhrase: "Practice makes perfect!"
-});
-
-console.log(instructorOne.age);
-instructorOne.demo("Computer Science");
-instructorOne.grade(maryBaker, "Computer Science");
 
 /*
   TASK 5
@@ -237,22 +194,6 @@ class Student extends Lambdasian {
   }
 }
 
-const studentOne = new Student({
-  name: "Sam",
-  age: 22,
-  location: "Boston, MA",
-  previousBackground: "Marketing Manager",
-  className: "web34",
-  favSubjects: ["math", "science", "physical education"]
-});
-
-console.log(studentOne.age);
-studentOne.listSubjects();
-studentOne.PRAssignment("Data Science 101");
-studentOne.sprintChallenge("Intro to Python");
-
-/*
-
 /*
   TASK 6
     - Write a ProjectManager class extending Instructor.
@@ -266,9 +207,32 @@ studentOne.sprintChallenge("Intro to Python");
         + `standUp` a method that takes in a slack channel and returns `{name} announces to {channel}, @channel standy times!`
         + `debugsCode` a method that takes in a student object and a subject and returns `{name} debugs {student.name}'s code on {subject}`
 */
-class ProjectManager {
 
+class ProjectManager extends Instructor {
+ constructor(attributes) {
+   super(attributes);
+   this.gradClassName = attributes.gradClassName;
+   this.favInstructor = attributes.favInstructor;
+ }
+ standUp(slackChannel) {
+  return `${this.name} announces to ${slackChannel}, @channel standy times!`;
+ }
+ debugsCode(student, subject) {
+  return `${student} debugs ${Student.name}'s code on ${subject}`;
+ }
 }
+
+const projectManagerOne = new ProjectManager({
+  name: "April",
+  age: 27,
+  location: "Los Angeles, CA",
+  gradClassName: "CS1",
+  favInstructor: "Sean",
+});
+
+console.log(projectManagerOne.age);
+projectManagerOne.standUp("web34_help");
+projectManagerOne.debugsCode();
 
 /*
   STRETCH PROBLEM (no tests!)
